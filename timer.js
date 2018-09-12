@@ -7,26 +7,22 @@ $(function() {
     checkTimer = false,
     minute,
     second,
-    showTime,
     $timer = $("#timer"),
     $start = $("#start"),
     $stop = $("#stop"),
     $reset = $("#reset");
 
-  $timer.text(setTime(time));
+  $timer.text(setTime());
 
   $start.on("click", function() {
     if (!checkTimer) {
       checkTimer = setInterval(function() {
-        if (time === defaultTime) {
-          time--;
-        }
+        time--;
+        $timer.text(setTime());
+
         if (time === 0) {
           $timer.text("Time UP!");
           clearInterval(checkTimer);
-        } else {
-          $timer.text(setTime(time));
-          time--;
         }
       }, 1000);
     }
@@ -40,14 +36,13 @@ $(function() {
   $reset.on("click", function() {
     clearInterval(checkTimer);
     time = defaultTime;
-    $timer.text(setTime(time));
+    $timer.text(setTime());
     checkTimer = false;
   });
 
-  function setTime(nowTime) {
+  function setTime() {
     minute = ("0" + Math.floor(time / 60)).slice(-2);
     second = ("0" + time % 60).slice(-2);
-    showTime = minute + ":" + second
-    return showTime;
+    return minute + ":" + second;
   }
 });
