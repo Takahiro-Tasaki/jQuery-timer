@@ -2,7 +2,7 @@ $(function() {
   "use strict";
 
   var
-    defaultTime = 8,
+    defaultTime = 180,
     time = defaultTime,
     checkTimer = false,
     minute,
