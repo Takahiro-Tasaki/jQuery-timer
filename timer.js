@@ -2,7 +2,7 @@ $(function() {
   "use strict";
 
   var
-    defaultTime = 180,
+    defaultTime = 8,
     time = defaultTime,
     checkTimer = false,
     minute,
@@ -10,7 +10,8 @@ $(function() {
     $timer = $("#timer"),
     $start = $("#start"),
     $stop = $("#stop"),
-    $reset = $("#reset");
+    $reset = $("#reset"),
+    $alarm = $("#alarm");
 
   $timer.text(setTime());
 
@@ -22,6 +23,7 @@ $(function() {
 
         if (time === 0) {
           $timer.text("Time UP!");
+          $alarm.trigger("play");
           clearInterval(checkTimer);
         }
       }, 1000);
